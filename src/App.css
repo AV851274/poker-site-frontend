@@ -1,0 +1,874 @@
+
+:root {
+    --green: #14A76C;
+    --yellow: #FFE400;
+    --orange: #FF652F;
+    --primary: #272727;
+    --secondary: #242424;
+    --outline: #747474;
+    --btn: #1a1a1a;
+}
+
+.chat-message {
+    margin-bottom: 0.5em;
+    display: flex;
+    flex-direction: column;
+}
+
+.chat-timestamp {
+    color: var(--outline);
+    font-size: 0.5em;
+}
+
+.error {
+    z-index: 20;
+    position: absolute;
+    top: 0;
+    width: calc(100vw - 21.5em);
+    left: 21.5em;
+    background-color: red;
+    color: white;
+    display: flex;
+    justify-content: center;
+    animation: swipeInOut 6s forwards;
+}
+
+@keyframes swipeInOut {
+    0% {
+        transform: translateX(200%);
+    }
+    20% {
+        transform: translateX(0);
+    }
+    80% {
+        transform: translateX(0);
+    }
+    100% {
+        transform: translateX(100%);
+    }
+}
+
+.none {
+    display: none;
+}
+
+body {
+    position: fixed;
+    height: 100%;
+    width: 100%;
+}
+
+.action-on {
+    border: 3px solid transparent !important;
+    border-image: url("data:image/svg+xml;charset=utf-8,%3Csvg width='100' height='100' viewBox='0 0 100 100' fill='none' xmlns='http://www.w3.org/2000/svg'%3E %3Cstyle%3Epath%7Banimation:stroke 15s infinite linear%3B%7D%40keyframes stroke%7Bto%7Bstroke-dashoffset:776%3B%7D%7D%3C/style%3E%3ClinearGradient id='g' x1='0%25' y1='0%25' x2='0%25' y2='100%25'%3E%3Cstop offset='0%25' stop-color='%23747474' /%3E%3Cstop offset='25%25' stop-color='%23747474' /%3E%3Cstop offset='50%25' stop-color='%23747474' /%3E%3Cstop offset='100%25' stop-color='%23747474' /%3E%3C/linearGradient%3E %3Cpath d='M1.5 1.5 l97 0l0 97l-97 0 l0 -97' stroke-linecap='square' stroke='url(%23g)' stroke-width='3' stroke-dasharray='388'/%3E %3C/svg%3E") 1 !important;
+}
+
+.bet img {
+    width: 3em;
+}
+
+.bet {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+}
+
+.bet span {
+    font-family: monospace;
+    text-align: center;
+}
+
+.player {
+    position: relative;
+    width: 6em;
+}
+
+.hand {
+    position: relative;
+    height: 8em;
+}
+
+.stack-green {
+    background-color: var(--green) !important;
+}
+
+.stack {
+    position: absolute;
+    top: 0;
+    height: 1em;
+    width: 6em;
+    z-index: 4;
+    background-color: var(--btn);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-top-right-radius: 5px;
+    border-top-left-radius: 5px;
+}
+
+.stack span {
+    font-size: 0.8em;
+}
+
+.hand card-t {
+    position: absolute;
+    top: 1em;
+    width: 5em;
+}
+
+.hand .seat {
+    position: absolute;
+    top: 1em;
+    width: 6em;
+    height: 5em;
+    background-color: var(--secondary);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.player {
+    cursor: pointer;
+    border: 1px solid transparent;
+}
+
+.player:hover {
+    border: 1px solid var(--outline);
+}
+
+.hand .a {
+    z-index: 3;
+    left: 1em;
+}
+
+.hand .b {
+}
+
+.details {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    height: 2em;
+    width: 6em;
+    z-index: 4;
+    background-color: var(--btn);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-bottom-right-radius: 5px;
+    border-bottom-left-radius: 5px;
+}
+
+.seats {
+    position: absolute;
+    z-index: 2;
+    width: 100%;
+    height: 100%;
+}
+
+.seats-top, .seats-bottom, .seats-right, .seats-left {
+    position: absolute;
+    display: flex;
+    justify-content: space-between;
+}
+
+@media (min-width: 900px) {
+    .seats-left .player .bet {
+        position: absolute;
+        left: 7em;
+        top: 0;
+    }
+
+    .seats-right .player .bet {
+        position: absolute;
+        right: 0;
+        top: 0;
+    }
+
+    .seats-top .player .bet {
+        position: absolute;
+        left: 1.5em;
+        top: 7em;
+    }
+
+    .seats-bottom .player .bet {
+        position: absolute;
+        left: 1.5em;
+        bottom: 8.5em;
+    }
+
+    .seats-top {
+        width: calc(100% - 20em);
+        margin-top: -4em;
+        margin-left: 7em;
+        top: 0;
+        left: 0;
+        flex-direction: row;
+    }
+
+    .seats-bottom {
+        width: 100%;
+        bottom: 0;
+        left: 0;
+        width: calc(100% - 20em);
+        margin-left: 7em;
+        margin-bottom: -4em;
+        flex-direction: row;
+    }
+
+    .seats-left {
+        height: 100%;
+        top: 0;
+        left: 0;
+        margin-left: -2em;
+        flex-direction: column;
+        justify-content: center;
+    }
+
+    .seats-right {
+        height: 100%;
+        top: 0;
+        right: 0;
+        margin-right: -2em;
+        flex-direction: column;
+        justify-content: center;
+    }
+}
+
+.menu {
+    width: 25em;
+    background-color: var(--secondary);
+    height: 100%;
+}
+
+.floor {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    background-color: var(--primary);
+    flex-direction: column;
+}
+
+.buttons {
+    background-color: var(--secondary);
+    padding-top: 2em;
+    padding-bottom: 2em;
+    padding-right: 2em;
+    display: flex;
+    align-items: stretch;
+    gap: 1em;
+    flex-grow: 1;
+}
+
+.buttons * {
+    flex: 1;
+}
+
+.table {
+    background-color: var(--primary);
+    border: 1px solid var(--outline);
+    margin: 5em;
+    flex: 1;
+    display: flex;
+    position: relative;
+    border-radius: 0.5em;
+}
+
+.table .inner {
+    border: 1px solid var(--outline);
+    background-color: var(--secondary);
+    flex: 1;
+    margin: 2em;
+    border-radius: 0.5em;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    grid-auto-columns: 1fr;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr 1fr 1fr;
+    gap: 4px 4px;
+    grid-template-areas:
+        "pot-amount"
+        "community-cards"
+        ".";
+}
+
+.community-cards card-t {
+    width: 5em;
+    display: block;
+}
+
+.community-cards {
+    display: flex;
+    gap: 0.5em;
+    flex-direction: column;
+    justify-self: center;
+    grid-area: community-cards;
+}
+
+.runout {
+    display: flex;
+    gap: 0.5em;
+}
+
+.pot-amount {
+    font-family: monospace;
+    grid-area: pot-amount;
+    font-size: 0.5em;
+    width: 100%;
+    position: relative;
+}
+
+.showing {
+    background-color: var(--secondary);
+    z-index: 20;
+    color: white;
+    position: relative;
+    top: 3em;
+    text-align: center;
+}
+
+.folded {
+    background-color: rgba(255, 0, 0, 0.7) !important;
+}
+
+.allIn {
+    background-color: rgba(0, 0, 255, 0.7) !important;
+}
+
+.away {
+    background-color: rgba(255, 55, 0, 0.7) !important;
+}
+
+.pot-amount h1 {
+    position: absolute;
+    width: 100%;
+    text-align: center;
+    bottom: 0;
+}
+
+.menu {
+    padding-left: 1em;
+    padding-right: 1em;
+    display: flex;
+    flex-direction: column;
+    gap: 2em;
+}
+
+.menu .info {
+    font-family: monospace;
+    grid-area: info;
+}
+
+.menu .actions {
+    grid-area: actions;
+    display: flex;
+    flex-direction: column;
+}
+
+.menu .actions button {
+    margin-top: 5px;
+}
+
+.invis {
+    visibility: hidden;
+}
+
+.menu .chat {
+    border: 1px solid var(--outline);
+    border-radius: 5px;
+    padding-left: 1em;
+    padding-right: 1em;
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 1em;
+    padding-bottom: 1em;
+    padding-top: 0.5em;
+    max-height: 50svh;
+    min-height: 30svh;
+}
+
+.menu .chat .messages {
+    overflow-y: scroll;
+    margin-bottom: 0.5em;
+    height: 35svh;
+}
+
+.menu .chat .send {
+    display: flex;
+    align-self: flex-end;
+}
+
+.menu .chat .send input {
+    width: 100%;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+}
+
+.menu .chat .send button {
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+    border-left: 1px solid var(--outline);
+}
+
+.rit {
+    position: absolute;
+    top: 0;
+    z-index: 10;
+    width: calc(100vw - 21.5em);
+    left: 21.5em;
+    background-color: var(--secondary);
+    padding: 0.5em;
+    color: white;
+    display: flex;
+    gap: 1em;
+    justify-content: center;
+}
+
+.modal {
+    display: flex;
+    position: absolute;
+    width: calc(100vw - 21.5em);
+    height: 100vh;
+    align-items: center;
+    left: 21.5em;
+    justify-content: center;
+}
+
+.modal .modal-content {
+    background-color: var(--secondary);
+    z-index: 11;
+    padding-left: 2em;
+    padding-right: 2em;
+    padding-bottom: 2em;
+    border: 1px solid var(--outline);
+    border-radius: 5px;
+}
+
+.modal .modal-header {
+    position: relative;
+    font-family: monospace;
+}
+
+.modal .modal-body {
+    display: flex;
+    flex-direction: column;
+}
+
+.modal .modal-bg {
+    z-index: 10;
+    background-color: rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(5px);
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    cursor: pointer;
+}
+
+.radio {
+    display: flex;
+    flex-direction: row;
+}
+
+.radio button {
+    flex: 1;
+    outline: none;
+    border: none;
+}
+
+.radio > button {
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+}
+
+.radio > button ~ button {
+    border-top-right-radius: 8px;
+    border-bottom-right-radius: 8px;
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+}
+
+.radio button:not(.radio-active) {
+    opacity: 50%;
+}
+
+.radio button:hover {
+    outline: none;
+    border: none;
+}
+
+.create-table {
+    display: flex;
+    flex-direction: column;
+}
+
+.create-table h1 {
+    font-family: monospace;
+}
+
+.midbox {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#root {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+}
+
+body {
+    padding: 0;
+    margin: 0;
+}
+
+.ingress {
+    border: 1px solid var(--outline);
+    border-radius: 0.5em;
+    padding: 1em;
+    display: flex;
+    gap: 2em;
+    background-color: var(--primary);
+}
+
+.ingresses {
+    max-height: 50vh;
+    overflow-y: scroll;
+}
+
+.ingress > div ~ div {
+    gap: 0.5em;
+}
+
+.ingress > div > span {
+    font-weight: bold;
+}
+
+.ingress > div > span ~ span {
+    font-weight: normal;
+}
+
+.ingress input {
+    width: 100px;
+}
+
+.btncont {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+}
+
+#hamburger {
+    display: none;
+}
+
+
+@keyframes close-panel {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+}
+
+@keyframes open-panel {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+@media (max-width: 900px) {
+    .menu.opening {
+    }
+
+    .menu.open {
+    }
+
+    .menu.closing {
+    }
+
+    button:hover {
+      border: none !important;
+    }
+    button:focus {
+      border: none !important;
+    }
+    button:not(:disabled) {
+        color: white !important;
+    }
+
+    .seats-left .player .bet {
+        position: absolute;
+        left: 0em;
+        top: 3.5em;
+    }
+
+    .seats-right .player .bet {
+        position: absolute;
+        left: 0em;
+        bottom: 5.5em;
+    }
+
+    .seats-top .player .bet {
+        position: absolute;
+        left: 3em;
+        top: -1em;
+    }
+
+    .seats-bottom .player .bet {
+        position: absolute;
+        right: 3.5em;
+        top: -1em;
+    }
+    .ingress input {
+        width: 100px;
+    }
+    .ingress {
+        font-size: 0.5em;
+    }
+    .dropdown {
+        z-index: 10;
+        position: absolute;
+        top: 0.5em;
+        right: 0.5em;
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .hamburger {
+      align-self: flex-end;
+    }
+
+    label {
+      cursor: pointer;
+    }
+
+    input[type=checkbox] + label {
+      .icon-bar {
+        display: block;
+        width: 22px;
+        height: 2px;
+        background-color: #cccccc;
+        margin: 4px;
+        transition: all 0.2s;
+      }
+      .top-bar {
+        transform: rotate(0);
+      }
+      .middle-bar {
+        opacity: 1;
+      }
+    }
+
+    input[type=checkbox]:checked + label {
+      .top-bar {
+        transform: rotate(45deg);
+        transform-origin: 10% 10%;
+      }
+      .middle-bar {
+        opacity: 0;
+      }
+      .bottom-bar {
+        transform: rotate(-45deg);
+        transform-origin: 10% 90%;
+      }
+    }
+    input[type="checkbox"]:checked ~ .menu {
+        display: flex;
+        animation: open-panel 0.3s ease-in-out forwards; /* animation for opening */
+    }
+    input[type="checkbox"]:not(checked) ~ .menu {
+        animation: close-panel 0.3s ease-in-out forwards; /* animation for closing */
+    }
+    .menu {
+        /*display: none;*/
+        width: calc(100vw - 2em);
+        position: absolute;
+        z-index: 9;
+        transform: translateX(-100%); /* initial state: panel is closed */
+        transition: transform 0.3s ease-in-out;
+    }
+    .table {
+        margin: 2em;
+    }
+    .community-cards card-t {
+        width: 2.5em;
+    }
+    .hand card-t {
+        width: 2.5em;
+    }
+    .pot-amount {
+        font-size: 0.5em;
+    }
+    .hand {
+        height: 5em;
+        width: 3.5em;
+    }
+    .player {
+        width: 3.5em;
+    }
+    .stack {
+        width: 3.5em;
+    }
+    .details {
+        width: 3.5em;
+        height: 1.25em;
+    }
+    .details span {
+        font-size: 0.75em;
+    }
+    .seat {
+        width: 3.5em !important;
+        height: 3em !important;
+    }
+    .seat span {
+        font-size: 0.65em;
+    }
+    .seats-top {
+        height: 100%;
+        top: 0;
+        left: 0;
+        margin-left: -1em;
+        flex-direction: column;
+        justify-content: space-around;
+    }
+    .seats-bottom {
+        height: 100%;
+        top: 0;
+        right: 0;
+        margin-right: -0.5em;
+        flex-direction: column;
+        justify-content: space-around;
+    }
+    .seats-left {
+        width: calc(100% - 20em);
+        margin-top: -1.5em;
+        margin-left: 9em;
+        top: 0;
+        left: 0;
+        flex-direction: row;
+    }
+    .seats-right {
+        width: 100%;
+        bottom: 0;
+        left: 0;
+        width: calc(100% - 20em);
+        margin-left: 9em;
+        margin-bottom: -2em;
+        flex-direction: row;
+    }
+    .buttons {
+        max-width: 90vw;
+        display: inline-flex;
+        padding-top: 0em;
+        padding-bottom: 0.5em;
+        padding-right: 0em;
+        padding-left: 1em;
+    }
+    .buttons * {
+        flex: auto;
+    }
+    .btncont {
+        flex-direction: column;
+        padding-top: 0.5em;
+        margin-bottom: 5.5em;
+        background-color: var(--secondary);
+    }
+    .showing {
+        top: 1.5em;
+        height: 1.5em;
+    }
+    .showing span {
+        font-size: 0.75em;
+    }
+
+    .modal {
+        display: flex;
+        position: absolute;
+        width: 100vw;
+        height: 100vh;
+        left: 0;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .chat {
+        min-height: 40svh;
+        max-height: 60svh;
+    }
+
+    .error {
+        z-index: 20;
+        position: absolute;
+        top: 0;
+        width: 100svw;
+        left: 0;
+        background-color: red;
+        color: white;
+        display: flex;
+        justify-content: center;
+        animation: swipeInOut 6s forwards;
+    }
+
+    .rit {
+        position: absolute;
+        top: 0;
+        z-index: 20;
+        width: 100svw;
+        left: 0;
+        background-color: var(--secondary);
+        padding: 0.5em;
+        color: white;
+        display: flex;
+        gap: 1em;
+        justify-content: center;
+        animation: swipeInOut 6s forwards;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 900px) and (orientation: landscape) {
+    html{
+        -webkit-transform: rotate(-90deg);
+           -moz-transform: rotate(-90deg);
+            -ms-transform: rotate(-90deg);
+             -o-transform: rotate(-90deg);
+                transform: rotate(-90deg);
+        -webkit-transform-origin: left top;
+           -moz-transform-origin: left top;
+            -ms-transform-origin: left top;
+             -o-transform-origin: left top;
+                transform-origin: left top;
+        position: absolute;
+        top: 100%;
+        left: 0
+    }
+    .menu .chat {
+        max-height: 30svw;
+    }
+    .modal {
+        width: calc(100svh - 21.5em);
+        height: 100svw;
+    }
+    .midbox {
+        width: 100svh;
+        height: 100svw;
+    }
+    #root {
+        width: 100svh;
+        height: 100svw;
+    }
+    .ingresses {
+        max-height: 50svw;
+    }
+    .btncont {
+        width: calc(100svh);
+    }
+}
